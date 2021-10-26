@@ -95,14 +95,14 @@ var path = require('path')
 //db password= dV9ebXYfpnxYi8D
 //heroku password = UEcbQ;P7`:~p~jA (doesnt include '=')
 const app=express()
-
+const uri = "mongodb+srv://Netra:jNnh12CkOTE2aTt7@noticeboxcluster.ozjun.mongodb.net/test?retryWrites=true&w=majority";
 // app.use(favicon(__dirname + './assets/favicon.png'));
 app.use(favicon(path.join(__dirname, './assets/favicon.ico')))
 mongoose
-.connect('mongodb+srv://Netra:jNnh12CkOTE2aTt7@noticeboxcluster.ozjun.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+.connect(uri,
     {
     useNewUrlParser:true,
-    useUnifiedTopology:true, useFindAndModify: false
+    useUnifiedTopology:true, 
     }
 )
 .then(()=>{console.log('Connection is M Successful');}); 
@@ -134,8 +134,8 @@ app.post('/postnewtask',async(req,res)=>{
         taskTargetDate : req.body.taskTargetDate,
         taskTargetStartTime : req.body.taskTargetStartTime,
         taskTargetEndTime : req.body.taskTargetEndTime,
-        subtasks : req.body.subtasks,
-        collaborators : req.body.collaborators
+        // subtasks : req.body.subtasks,
+        // collaborators : req.body.collaborators
         })       
        
         console.log('Got body:', req.body.taskTitle); 
